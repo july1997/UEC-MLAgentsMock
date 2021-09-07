@@ -6,6 +6,7 @@ import string
 import shutil
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+from pyngrok import ngrok
 
 UPLOAD_FOLDER = './results/'
 ALLOWED_EXTENSIONS = {'nn'}
@@ -92,4 +93,6 @@ def judge_file(name):
 
 
 if __name__ == "__main__":
+    http_tunnel = ngrok.connect(5000, "http")
+    print(http_tunnel)
     app.run(debug=True)
